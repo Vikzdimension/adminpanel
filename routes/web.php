@@ -25,4 +25,10 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 });
 
+
+Route::group(['middleware' => ['auth']], function(){
+	Route::get('/users', 'App\Http\Controllers\DashboardController@users')->name('users');
+});
+
+
 require __DIR__.'/auth.php';

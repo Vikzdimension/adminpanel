@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Laratrust\Models\LaratrustRole;
 
 class DashboardController extends Controller
 {
@@ -11,7 +13,12 @@ class DashboardController extends Controller
 		if (Auth::user()->hasRole('user')) {
 			return view('userdashboard');
 		}else{
-			return view('vpopmail_add_domain(domain, dir, uid, gid)dashboard');
+			return view('admindashboard');
 		}
+	}
+
+	public function users(){
+		$users = User::whereRoleIs('user')->get();
+		return view('users', compact('users'));
 	}
 }
